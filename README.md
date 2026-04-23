@@ -5,8 +5,12 @@ A web-based canteen system with login and database.
 - User login system
 - Order management
 - Menu handling
+- Cart and Billing System
 
-## Tech Used
+## Tech Stack
 - HTML, CSS, JavaScript
 - PHP
 - MySQL
+  
+## Purpose
+This project was built to simplify the canteen ordering process by reducing manual work and improving efficiency.
