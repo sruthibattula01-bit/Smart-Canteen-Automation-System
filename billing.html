@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>Billing</title>
+
+    <style>
+        body {
+            text-align: center;
+            background-color: #e9ebf7;
+            font-family: Arial;
+        }
+
+        ul {
+            display: inline-block;
+            text-align: left;
+        }
+
+        button {
+            padding: 10px;
+            background-color: orange;
+        }
+
+        button:hover {
+            background-color: green;
+        }
+
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+    </style>
+
+    <script>
+        function generateBill() {
+
+            var name = prompt("Enter your name:");
+            document.getElementById("name").innerHTML = "Customer: " + name;
+
+            var items = JSON.parse(localStorage.getItem("cart")) || [];
+            var total = 0;
+            var list = "<ul>";
+
+            var i = 0;
+            while (i < items.length) {
+                list += "<li>" + items[i] + "</li>";
+                total += items[i].price;
+                i++;
+            }
+
+            list += "</ul>";
+
+            document.getElementById("items").innerHTML = list;
+            document.getElementById("total").innerHTML = "Total = ₹" + total;
+
+            window.totalAmount = total;
+        }
+
+        function applyCoupon() {
+            var code = document.getElementById("coupon").value;
+            var discount = 0;
+
+            if (code == "SAVE10") {
+                discount = 10;
+            } 
+            else if (code == "SAVE20") {
+                discount = 20;
+            } 
+            else {
+                alert("Invalid Coupon");
+                return;
+            }
+
+            var finalAmount = window.totalAmount - discount;
+            document.getElementById("final").innerHTML = "Final Amount = ₹" + finalAmount;
+        }
+
+        function payNow() {
+            alert("Payment Successful!");
+            window.location.href = "#feedback"; // go to feedback section
+        }
+    </script>
+</head>
+
+<body onload="generateBill()">
+
+    <!-- TOP (Billing Section) -->
+    <h2 id="top" style="color:#1d055c;">Billing Page</h2>
+
+    <h3 id="name"></h3>
+
+    <h3>Items:</h3>
+    <div id="items"></div>
+
+    <h3 id="total"></h3>
+
+    <br>
+
+    <h3>Apply Coupon</h3>
+    <input type="text" id="coupon" placeholder="Enter code">
+    <button onclick="applyCoupon()">Apply</button>
+
+    <h3 id="final"></h3>
+
+    <br>
+
+    <button onclick="payNow()">Pay Now</button>
+
+    <br><br>
+
+    <a href="cart.html">⬅ Back to Cart</a>
+	<a href="contactus.html">|Contact Us</a>
+
+    <hr>
+
+    <!-- FEEDBACK SECTION -->
+    <h2 id="feedback">Feedback Form</h2>
+
+    <form>
+        Name:<br>
+        <input type="text"><br><br>
+
+        Rating:<br>
+        <input type="radio" name="r"> 1
+        <input type="radio" name="r"> 2
+        <input type="radio" name="r"> 3
+        <input type="radio" name="r"> 4
+        <input type="radio" name="r"> 5
+        <br><br>
+
+        Comments:<br>
+        <textarea rows="4" cols="30"></textarea>
+        <br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <br><br>
+
+    <!-- BACK TO TOP -->
+    <a href="#top">⬆ Back to Billing Page</a>
+	
+
+</body>
+</html>

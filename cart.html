@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <style>
+        body {
+            background-color: #e9ebf7;
+            font-family: Arial;
+            text-align: center;
+        }
+        button {
+            padding: 10px;
+            background-color: orange;
+        }
+        button:hover {
+            background-color: green;
+        }
+        ol {
+            display: inline-block;
+            text-align: left;
+        }
+    </style>
+
+    <script>
+        function clearCart() {
+            localStorage.removeItem("cart");
+            location.reload();
+        }
+
+        function loadCart() {
+            var items = JSON.parse(localStorage.getItem("cart")) || [];
+            var output = "";
+            var total = 0;
+
+            if (items.length == 0) {
+                output = "Cart is empty";
+            } else {
+                output = "<ol>";
+
+                for (var i = 0; i < items.length; i++) {
+                    output += "<li>" + items[i] + "</li>";
+
+                    // ✅ EXTRACT PRICE
+                    var pricePart = items[i].split("₹")[1];
+                    var price = parseInt(pricePart);
+
+                    // ✅ SWITCH (MANDATORY)
+                    switch (true) {
+
+                        case items[i].includes("Idli"):
+                        case items[i].includes("Upma"):
+                        case items[i].includes("Dosa"):
+                        case items[i].includes("Poori"):
+                        case items[i].includes("Meals"):
+                        case items[i].includes("Biryani"):
+                        case items[i].includes("Pakoda"):
+                        case items[i].includes("Tea"):
+                        case items[i].includes("Coffee"):
+                        case items[i].includes("Samosa"):
+                        case items[i].includes("Chips"):
+                        case items[i].includes("Sandwich"):
+                        case items[i].includes("Fried Rice"):
+                        case items[i].includes("Curd Rice"):
+                        case items[i].includes("ThickShake"):
+                        case items[i].includes("Juice"):
+                            total += price;
+                            break;
+
+                        default:
+                            total += price;
+                    }
+                }
+
+                output += "</ol>";
+            }
+
+            document.getElementById("items").innerHTML = output;
+            document.getElementById("total").innerHTML = "Total = &#8377;" + total;
+
+            // RANDOM
+            document.getElementById("random").innerHTML =
+                "Token Number: " + (Math.floor(Math.random() * 100) + 1);
+
+            // DATE
+            var now = new Date();
+            document.getElementById("date").innerHTML =
+                "Date & Time: " + now.toLocaleString();
+
+            // JSON
+            var obj = { name: "User", items: items.length };
+            document.getElementById("json").innerHTML =
+                "JSON: " + JSON.stringify(obj);
+
+            // ARRAY
+            var categories = ["Breakfast", "Lunch", "Snacks", "Beverages"];
+            var arrOutput = "";
+
+            for (var i = 0; i < categories.length; i++) {
+
+                if (categories[i] == "Snacks") {
+                    continue;
+                }
+
+                if (categories[i] == "Beverages") {
+                    arrOutput += categories[i] + " ";
+                    break;
+                }
+
+                arrOutput += categories[i] + " ";
+            }
+
+            document.getElementById("array").innerHTML =
+                "Categories Array: " + arrOutput;
+
+            // STRING
+            var text = "Cart Page";
+            document.getElementById("str").innerHTML =
+                text.toUpperCase() + " | Length: " + text.length;
+
+            // BOOLEAN + NUMBER
+            var b = true;
+            var n = 100;
+            document.getElementById("bn").innerHTML =
+                "Boolean: " + b + " Number: " + n;
+        }
+
+        function goToBilling() {
+            var items = JSON.parse(localStorage.getItem("cart")) || [];
+            if (items.length > 0) {
+                window.location.href = "billing.html";
+            } else {
+                alert("Cart is empty!");
+            }
+        }
+    </script>
+</head>
+
+<body onload="loadCart()">
+
+    <h2 style="color:#1d055c;">Cart Page</h2>
+
+    <h3 style="color:#1d055c;">Items in Cart:</h3>
+    <div id="items"></div>
+
+    <h3 id="total"></h3>
+
+    <br>
+
+    <button onclick="goToBilling()">Proceed to Payment</button>
+    <button onclick="clearCart()">Clear Cart</button>
+
+    <br><br>
+
+    <a href="menu.html">⬅ Back to menu</a>
+
+    <br><br>
+    <hr>
+
+    <!-- OUTPUT -->
+    <h3 id="array"></h3>
+    <h3 id="str"></h3>
+    <h3 id="random"></h3>
+    <h3 id="date"></h3>
+    <h3 id="bn"></h3>
+    <h3 id="json"></h3>
+
+</body>
+</html>

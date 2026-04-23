@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Beverages</title>
+
+    <style>
+        body {
+            text-align: center;
+            background-color: #e9ebf7;
+            font-family: Arial;
+        }
+
+        table {
+            margin: auto;
+        }
+
+        img {
+            width: 80px;
+            height: 80px;
+        }
+
+        button {
+            padding: 8px;
+            background-color: orange;
+        }
+
+        button:hover {
+            background-color: green;
+        }
+    </style>
+
+    <script>
+        function addItem(item, price, id) {
+            var qty = document.getElementById(id).value;
+
+            if (qty == "" || qty <= 0) {
+                alert("Enter quantity");
+                return;
+            }
+
+            var cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            cart.push(item + " x " + qty + " = ₹" + (price * qty));
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            alert("1 item added to cart");
+
+            document.getElementById(id).value = "";
+        }
+    </script>
+</head>
+
+<body>
+
+    <h2 style="color:#1d055c;">Beverages Menu</h2>
+
+    <table border="1" cellpadding="14" cellspacing="0">
+        <tr>
+            <th>Item</th>
+            <th>Image</th>
+            <th>Quantity</th>
+            <th>Add</th>
+        </tr>
+
+        <tr>
+            <td>Tea</td>
+            <td><img src="tea"></td>
+            <td><input type="number" id="tea"></td>
+            <td><button onclick="addItem('Tea',15,'tea')">Add</button></td>
+        </tr>
+
+        <tr>
+            <td>Coffee</td>
+            <td><img src="coffee"></td>
+            <td><input type="number" id="coffee"></td>
+            <td><button onclick="addItem('Coffee',20,'coffee')">Add</button></td>
+        </tr>
+
+        <tr>
+            <td>ThickShake</td>
+            <td><img src="shake"></td>
+            <td><input type="number" id="shake"></td>
+            <td><button onclick="addItem('ThickShake',30,'shake')">Add</button></td>
+        </tr>
+
+        <tr>
+            <td>Juice</td>
+            <td><img src="Juice"></td>
+            <td><input type="number" id="juice"></td>
+            <td><button onclick="addItem('Juice',40,'juice')">Add</button></td>
+        </tr>
+    </table>
+
+    <br><br>
+
+    <a href="menu.html">⬅ Back to Menu</a> |
+    <a href="cart.html">Go to Cart ➡</a>
+
+</body>
+</html>

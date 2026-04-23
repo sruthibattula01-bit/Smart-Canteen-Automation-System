@@ -1,0 +1,153 @@
+<?php
+if(!isset($_COOKIE['user'])) {
+    header("Location: login.php");
+}
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Main Menu</title>
+    <meta charset="UTF-8">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="external.css">
+
+    <!-- Internal CSS -->
+    <style>
+        body {
+            background-color: #e9ebf7;
+            font-family: Arial;
+        }
+
+        /* Table styling */
+        table {
+            width: 60%;
+            margin: auto;
+            border-collapse: collapse;
+            background-color: white;
+        }
+
+        /* Box Model */
+        td, th {
+            border: 2px solid black;
+            padding: 10px;
+            margin: 5px;
+            text-align: center;
+        }
+	
+	td img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        /* Header style */
+        h2 {
+            text-align: center;
+            color: blue;
+        }
+
+        /* Positioning */
+        .table-container {
+            position: relative;
+            top: 20px;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: lightgray;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* CSS3 hover */
+        tr:hover {
+            background-color: lightblue;
+        }
+    </style>
+
+    <!-- SIMPLE SWITCH -->
+    <script>
+        function openCategory(choice) {
+            switch(choice) {
+                case "breakfast":
+                    location = "breakfast.html";
+                    break;
+
+                case "lunch":
+                    location = "lunch.html";
+                    break;
+
+                case "snacks":
+                    location = "snacks.html";
+                    break;
+
+                case "beverages":
+                    location = "beverages.html";
+                    break;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h2 style="color:#1d055c;">Quick Token - Menu Categories</h2>
+
+    <!-- Dropdown -->
+    <div class="dropdown">
+        <button>Categories</button>
+        <div class="dropdown-content">
+            <a href="breakfast.php">Breakfast</a><br>
+            <a href="lunch.php">Lunch</a><br>
+            <a href="snacks.php">Snacks</a><br>
+            <a href="beverages.php">Beverages</a>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table border="1">
+            <tr>
+                <th>Category</th>
+                <th>Image</th>
+                <th>Open</th>
+            </tr>
+
+            <tr>
+                <td>Breakfast</td>
+                <td><img src="breakfast.png" width="50" height="50" "></td>
+                <td><a href="breakfast.html">View</a></td>
+            </tr>
+
+            <tr>
+                <td>Lunch</td>
+                <td><img src="lunch.png"></td>
+                <td><a href="lunch.html">View</a></td>
+            </tr>
+
+            <tr>
+                <td>Snacks</td>
+                <td><img src="snacks.jpg"></td>
+                <td><a href="snacks.html">View</a></td>
+            </tr>
+
+            <tr>
+                <td>Beverages</td>
+                <td><img src="beverages.png"></td>
+                <td><a href="beverages.html">View</a></td>
+            </tr>
+        </table>
+	<img src="fullbreakfast.png" width="200">
+    </div>
+</body>
+</html>

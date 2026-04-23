@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Breakfast</title>
+
+    <style>
+        body {
+            text-align: center;
+            background-color: #e9ebf7;
+            font-family: Arial;
+        }
+
+        table {
+            margin: auto;
+        }
+
+        img {
+            width: 80px;
+            height: 80px;
+        }
+
+        button {
+            padding: 8px;
+            background-color: orange;
+        }
+
+        button:hover {
+            background-color: green;
+        }
+    </style>
+
+    <script>
+        function addItem(item, price, id) {
+
+            var qty = document.getElementById(id).value;
+
+            if (qty == "" || qty <= 0) {
+                alert("Enter quantity");
+                return;
+            }
+
+            var cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            cart.push(item + " x " + qty + " = ₹" + (price * qty));
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            alert("1 item added to cart");
+
+            document.getElementById(id).value = "";
+        }
+    </script>
+</head>
+
+<body>
+
+    <h2 style="color:#1d055c;">Breakfast Menu</h2>
+
+    <table border="1" cellpadding="14" cellspacing="0">
+        <tr>
+            <th>Item</th>
+            <th>Image</th>
+            <th>Quantity</th>
+            <th>Add</th>
+        </tr>
+
+        <tr>
+            <td>Idli</td>
+            <td><img src="idly"></td>
+            <td><input type="number" id="idli"></td>
+            <td><button onclick="addItem('Idli',30,'idli')">Add</button></td>
+        </tr>
+
+        <tr>
+            <td>Dosa</td>
+            <td><img src="dosa"></td>
+            <td><input type="number" id="dosa"></td>
+            <td><button onclick="addItem('Dosa',50,'dosa')">Add</button></td>
+        </tr>
+
+        <tr>
+            <td>Poori</td>
+            <td><img src="poori"></td>
+            <td><input type="number" id="poori"></td>
+            <td><button onclick="addItem('Poori',40,'poori')">Add</button></td>
+        </tr>
+
+        <tr>
+            <td>Upma</td>
+            <td><img src="upma"></td>
+            <td><input type="number" id="upma"></td>
+            <td><button onclick="addItem('Upma',35,'upma')">Add</button></td>
+        </tr>
+    </table>
+
+    <br><br>
+
+    <a href="menu.html">⬅ Back to Menu</a> |
+    <a href="cart.html">Go to Cart ➡</a>
+
+</body>
+</html>

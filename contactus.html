@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Us</title>
+	<link rel="stylesheet" href="style.css">
+    <script>
+        function submitContact() {
+
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var message = document.getElementById("msg").value;
+
+            var nameUpper = name.toUpperCase();
+
+            var user = {
+                username: nameUpper,
+                email: email,
+                message: message
+            };
+
+            var jsonData = JSON.stringify(user);
+            console.log(jsonData);
+
+            if (name == "" || email == "" || message == "") {
+                alert("Please fill all fields");
+                return;
+            }
+
+            document.getElementById("result").innerHTML =
+                "Thank you " + nameUpper + "<br>We will contact you at: " + email;
+
+            document.cookie = "username=" + name;
+        }
+
+        function clearForm() {
+            document.getElementById("name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("msg").value = "";
+        }
+    </script>
+</head>
+
+<body>
+
+    <h2>Contact Us</h2>
+
+    <form>
+        Name:<br>
+        <input type="text" id="name"><br>
+
+        Email:<br>
+        <input type="email" id="email"><br>
+
+        Message:<br>
+        <textarea id="msg"></textarea><br><br>
+
+        <button type="button" onclick="submitContact()">Send</button>
+        <button type="button" onclick="clearForm()">Clear</button>
+    </form>
+
+    <h3 id="result"></h3>
+
+</body>
+</html>

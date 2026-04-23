@@ -1,0 +1,54 @@
+body {
+    background-color: #e9ebf7;
+    font-family: Arial;
+    text-align: center;
+}
+
+/* Headings */
+h2, h3 {
+    color: #1d055c;
+}
+
+/* Special heading style */
+h2 {
+    color: #1d055c;
+    
+}
+
+
+
+/* Inputs and textarea */
+input, textarea {
+    width: 200px;
+    padding: 5px;
+    margin: 5px 0;
+}
+
+/* Buttons */
+button {
+    padding: 8px 12px;
+    background-color: #1d055c;
+    color: white;
+    border: 2px solid #1d055c;
+}
+
+button:hover {
+    background-color: green;
+    border: 2px solid green;
+}
+
+/* Result text */
+#result {
+    font-weight: bold;
+    color: #1d055c;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: purple;
+}
+
+a:hover {
+    color: green;
+}
